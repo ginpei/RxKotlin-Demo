@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                     }, {
                         println("onComplete")
                         countToast.cancel()
-                        Toast.makeText(applicationContext, "Woke up!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "Go!", Toast.LENGTH_SHORT).show()
                     })
         }
 
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                     .filter { user -> user.active }  // remove Charlie and Ginpei
                     .sorted { u1, u2 -> u2.birthYear - u1.birthYear }
                     .skipLast(1)  // remove Derik
-                    .map { user -> "${user.name} (${2017 - user.birthYear})" }
+                    .map { user -> "${user.name} (${2017 - user.birthYear}-year-old)" }
                     .subscribe({ text ->
                         println("- ${text}")
                     })
