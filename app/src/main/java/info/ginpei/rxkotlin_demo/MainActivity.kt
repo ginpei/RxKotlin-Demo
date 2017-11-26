@@ -8,8 +8,6 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 class DoSomething {
@@ -24,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Run just hello
         runJustHello.setOnClickListener {
             val observer = Observable.just("Hello")
             observer.subscribe { s ->
@@ -33,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             println("Hello?")
         }
 
+        // Sleep in a thread
         sleepThread.setOnClickListener {
             Toast.makeText(applicationContext, "Sleeping...", Toast.LENGTH_SHORT).show()
 
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             thread.start()
         }
 
+        // Sleep in an Rx-ish way
         sleepRx.setOnClickListener {
             Toast.makeText(applicationContext, "Sleeping...", Toast.LENGTH_SHORT).show()
 
@@ -71,7 +72,8 @@ class MainActivity : AppCompatActivity() {
                     })
         }
 
-        countUntilWakingUp.setOnClickListener {
+        // Count down
+        countDown.setOnClickListener {
             val countToast = Toast.makeText(applicationContext, "", Toast.LENGTH_LONG)
             countToast.show()
 
@@ -97,6 +99,7 @@ class MainActivity : AppCompatActivity() {
                     })
         }
 
+        // Handle user list
         handleUserList.setOnClickListener {
             class User(val name: String, val birthYear: Int, val active: Boolean)
 

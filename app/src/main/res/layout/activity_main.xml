@@ -34,7 +34,7 @@
             android:text="Sleep in an Rx-ish way" />
 
         <Button
-            android:id="@+id/countUntilWakingUp"
+            android:id="@+id/countDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Count down" />
