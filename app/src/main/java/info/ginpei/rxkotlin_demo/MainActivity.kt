@@ -38,11 +38,7 @@ class MainActivity : AppCompatActivity() {
 
             val thread = object : Thread() {
                 override fun run() {
-                    try {
-                        Thread.sleep(1000)
-                    } catch (e: InterruptedException) {
-                        e.printStackTrace()
-                    }
+                    Thread.sleep(1000)
 
                     runOnUiThread {
                         Toast.makeText(applicationContext, "Woke up!", Toast.LENGTH_SHORT).show()
