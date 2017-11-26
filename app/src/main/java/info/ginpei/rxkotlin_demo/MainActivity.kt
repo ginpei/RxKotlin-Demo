@@ -8,6 +8,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.concurrent.thread
 
 
 class DoSomething {
@@ -36,17 +37,13 @@ class MainActivity : AppCompatActivity() {
         sleepThread.setOnClickListener {
             Toast.makeText(applicationContext, "Sleeping...", Toast.LENGTH_SHORT).show()
 
-            val thread = object : Thread() {
-                override fun run() {
-                    Thread.sleep(1000)
+            thread {
+                Thread.sleep(1000)
 
-                    runOnUiThread {
-                        Toast.makeText(applicationContext, "Woke up!", Toast.LENGTH_SHORT).show()
-                    }
+                runOnUiThread {
+                    Toast.makeText(applicationContext, "Woke up!", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            thread.start()
         }
 
         // Sleep in an Rx-ish way
