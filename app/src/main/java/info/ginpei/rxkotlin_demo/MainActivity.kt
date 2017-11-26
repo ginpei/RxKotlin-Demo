@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
             observer.subscribe { s ->
                 Toast.makeText(applicationContext, s, Toast.LENGTH_LONG).show()
             }
-
-            println("Hello?")
         }
 
         // Sleep in a thread
@@ -44,14 +42,12 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Sleeping...", Toast.LENGTH_SHORT).show()
 
             Single.create<String> { subscriber ->
-                println("Single.create()")
-                Thread.sleep(3000)
+                Thread.sleep(1000)
                 subscriber.onSuccess("Woke up!")
             }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ message ->
-                        println("onSuccess")
                         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
                     }, {
                         println("onError")
@@ -64,7 +60,6 @@ class MainActivity : AppCompatActivity() {
             countToast.show()
 
             Observable.create<String> { subscriber ->
-                println("Observable.create()")
                 for (count in 3 downTo 1) {
                     subscriber.onNext(count.toString())
                     Thread.sleep(1000)
@@ -74,12 +69,10 @@ class MainActivity : AppCompatActivity() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ sCount ->
-                        println("onNext ${sCount}")
                         countToast.setText(sCount)
                     }, {
                         println("onError")
                     }, {
-                        println("onComplete")
                         countToast.cancel()
                         Toast.makeText(applicationContext, "Go!", Toast.LENGTH_SHORT).show()
                     })
