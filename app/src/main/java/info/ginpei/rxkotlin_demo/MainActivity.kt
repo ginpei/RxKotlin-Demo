@@ -10,13 +10,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread
 
-
-class DoSomething {
-    fun doSomething(s: String) {
-        println(s)
-    }
-}
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
